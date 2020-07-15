@@ -72,7 +72,7 @@ def stampajTablu(board):
 		print(board[i])
 
 
-def Konj():
+def pozicijaKonja():
 	currx = 0
 	curry = 0
 
@@ -121,5 +121,5 @@ def generisiPotez(board, currx, curry, totalmoves, xmoves, ymoves):
 
 
 if __name__ == "__main__":
-	Konj()
+	pozicijaKonja()
 	
