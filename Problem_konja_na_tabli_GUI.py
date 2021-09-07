@@ -3,17 +3,14 @@ import time
 
 pygame.init()
 
-
 # Dimenzije prozora
 WIN_DIMENSION = 700
 
 win = pygame.display.set_mode((WIN_DIMENSION, WIN_DIMENSION))
 pygame.display.set_caption("Projekat")
 
-
 # Velicina table
 N = 5
-
 TARGETMOVES = N**2
 
 # Boje
@@ -29,10 +26,10 @@ def Displej(board, final=False):
 		pygame.event.pump()
 
 	for i in range(N):
-		ydraw = i * (WIN_DIMENSION/N)
+		ydraw = i * (WIN_DIMENSION / N)
 		for n in range(N):
 			xdraw = n * (WIN_DIMENSION / N)
-			pygame.draw.rect(win, red, (xdraw, ydraw, WIN_DIMENSION/N, WIN_DIMENSION/N), 3)
+			pygame.draw.rect(win, red, (xdraw, ydraw, WIN_DIMENSION / N, WIN_DIMENSION / N), 3)
 			displejTekst(board[i][n], xdraw, ydraw)
 	
 	while final:
@@ -47,13 +44,11 @@ def tekst_objekti(text, font):
 	textSurface = font.render(str(text), True, white)
 	return textSurface, textSurface.get_rect()
 
-
 def displejTekst(text, xdraw, ydraw):
 	font = pygame.font.Font('freesansbold.ttf', 7 * N)
 	TextSurf, TextRect = tekst_objekti(text, font)
 	TextRect.center = ((xdraw + (WIN_DIMENSION / N) / 2), (ydraw + (WIN_DIMENSION / N) / 2))
 	win.blit(TextSurf, TextRect)
-
 
 def proveriValidnost(board, movx, movy):
 
@@ -63,7 +58,6 @@ def proveriValidnost(board, movx, movy):
 		return True
 	return False
 
-
 def stampajTablu(board):
 
 	#Stampanje table
@@ -71,11 +65,9 @@ def stampajTablu(board):
 	for i in range(len(board)):
 		print(board[i])
 
-
 def pozicijaKonja():
 	currx = 0
 	curry = 0
-
 	
 	board = [[" " for i in range(N)] for i in range(N)]
 
@@ -92,7 +84,6 @@ def pozicijaKonja():
 		Displej(board, True)
 	else: print("Nije moguce odigrati potez")
 	
-
 def generisiPotez(board, currx, curry, totalmoves, xmoves, ymoves):
 	if totalmoves == TARGETMOVES:
 		return True
@@ -100,7 +91,6 @@ def generisiPotez(board, currx, curry, totalmoves, xmoves, ymoves):
 	print("X osa: {}  Y osa: {}".format(currx, curry)) # Ispisivanje poteza
 	
 	Displej(board)		 
-
 
 	for i in range(8):
 
@@ -110,15 +100,12 @@ def generisiPotez(board, currx, curry, totalmoves, xmoves, ymoves):
 		if proveriValidnost(board, nextx, nexty):
 			board[nextx][nexty] = totalmoves
 		
-
 			if generisiPotez(board, nextx, nexty, totalmoves+1, xmoves, ymoves):
-
 				return True
 			# backtracking
 			board[nextx][nexty] = " "
 
 	return False
-
 
 if __name__ == "__main__":
 	pozicijaKonja()
